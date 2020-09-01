@@ -1,8 +1,9 @@
 from django.conf import settings
 from django.db import models
+from django.shortcuts import reverse
 
 # Create your models here.
-TAKEOUT_TYPE = (
+CATEGORY_CHOICES = (
     ('food', 'Food'),
     ('dri', 'Drinks'),
     ('bev', 'Beverage'),
@@ -17,18 +18,52 @@ LABEL_CHOICES = (
 class Item(models.Model):
     title = models.CharField(max_length=20)
     price = models.FloatField()
-    #discount_price = models.FloatField(blank=True, null=True)
-    category = models.CharField(choices=TAKEOUT_TYPE, max_length=5)
+    discount_price = models.FloatField(blank=True, null=True)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=5)
     label = models.CharField(choices=LABEL_CHOICES, max_length=2)
-    #slug = models.SlugField()
-    #description = models.TextField()
+    slug = models.SlugField()
+    description = models.TextField()
+    
+    
     #image = models.ImageField()
     date_added = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
        return self.title
+   
+    def get_absolute_url(self):
+       return reverse("pizza:detail", kwargs={
+           'slug': self.slug
+       })
+       
+    def get_add_to_cart_url(self):
+        return reverse("pizza:add_to_cart", kwargs={
+           'slug': self.slug
+       })
+        
+
+
+
+class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ordered = models.BooleanField(default=False)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
     
     
+    def __str__(self):
+        return f'{self.quantity} of {self.item.title}'
+
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderItem)
+    start_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.user.username
+
 # class Pizza_Type(models.Model):
 #     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
 #     pizza_type = models.CharField(choices=PIZZA_TYPES, max_length=10)
@@ -48,23 +83,3 @@ class Item(models.Model):
         
 #     def __str__(self):
 #         return self.topping_name
-
-
-
-class OrderItem(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    
-    
-    def __str__(self):
-        return self.item
-
-class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    items = models.ManyToManyField(OrderItem)
-    start_date = models.DateTimeField(auto_now_add=True)
-    ordered_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
-    
-    def __str__(self):
-        return self.user
-    

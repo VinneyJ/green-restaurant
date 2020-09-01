@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% block content %}
+		
+	<header class="row tm-welcome-section">
+		<h2 class="col-12 text-center tm-section-title">Welcome to Simple House</h2>
+	</header>
+	
+	
+	<div class="tm-section tm-container-inner">
+		<div class="row">
+			<div class="col-md-6">
+				<figure class="tm-description-figure">
+					<img src="img/img-01.jpg" alt="Image" class="img-fluid" />
+				</figure>
+			</div> 
+			<div class="col-md-6">
+				<div class="tm-description-box"> 
+					<h4 class="tm-gallery-title">{{ item.title }}</h4>
+					<p class="tm-mb-45">{{ object.descripton }}</p>
+					
+					<p>Category: {{ object.get_category_display }} </p>
+					
+					<p class="tm-gallery-price">
+						{% if object.discount_price %}
+							<del> Ksh {{ object.price }}</del>
+							<span> Ksh {{ object.discount_price }}</span>
+						{% else %}
+							 <span>{{ object.price }}</span>
+						{% endif %}
+					
+					</p>
+					<a href="{{ object.get_add_to_cart_url }}" class="tm-btn tm-btn-default tm-right">Add to Cart</a>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+
+{% endblock content %}
