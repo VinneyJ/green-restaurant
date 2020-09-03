@@ -17,7 +17,7 @@
 			<div class="col-md-6">
 				<div class="tm-description-box"> 
 					<h4 class="tm-gallery-title">{{ item.title }}</h4>
-					<p class="tm-mb-45">{{ object.descripton }}</p>
+					<p class="tm-mb-45">{{object.description }}</p>
 					
 					<p>Category: {{ object.get_category_display }} </p>
 					
@@ -31,6 +31,7 @@
 					
 					</p>
 					<a href="{{ object.get_add_to_cart_url }}" class="tm-btn tm-btn-default tm-right">Add to Cart</a>
+					<a href="{{ object.get_remove_from_cart_url }}" class="tm-btn tm-btn-default tm-right">Remove from Cart</a>
 				</div>
 			</div>
 		</div>

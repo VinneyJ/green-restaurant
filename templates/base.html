@@ -1,88 +1,77 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Simple House Cafe</title>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
-	
-	
-	<link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
-	<link href="{% static 'css/style.min.css' %}" rel="stylesheet">
-	
-	<link href="{% static 'css/templatemo-style.css' %}" rel="stylesheet" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+  </style>
 </head>
-<body> 
 
-	<div class="container">
-	<!-- Top box -->
-		<!-- Logo & Site Name -->
-		<div class="placeholder">
-			<div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'img/simple-house-01.jpg' %}">
-				<div class="tm-header">
-					<div class="row tm-header-inner">
-						<div class="col-md-6 col-12">
-							<img src="{% static 'img/simple-house-logo.png' %}" alt="Logo" class="tm-site-logo" /> 
-							<div class="tm-site-text-box">
-								<h1 class="tm-site-title">Simple House</h1>
-								<h6 class="tm-site-description">new restaurant template</h6>	
-							</div>
-                        </div>
+<body>
 
-                        <ul id="shop-cart" class="navbar-nav nav-flex-icons">
-                            
-                            <li class="nav-item">
-                              <a href="#" class="nav-link waves-effect">
-                                <span class="badge red z-depth-1 mr-1"> 2 </span>
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-                              </a>
-                            </li>
-                        </ul>
-						<nav class="col-md-6 col-12 tm-nav">
-							<ul class="tm-nav-ul">
-								<li class="tm-nav-li"><a href="{% url 'pizza:home' %}" class="tm-nav-link active">Home</a></li>
-								<li class="tm-nav-li"><a href="{% url 'pizza:about' %}" class="tm-nav-link">About</a></li>
-								<li class="tm-nav-li"><a href="{% url 'pizza:contact' %}" class="tm-nav-link">Contact</a></li>
-								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Login</a></li>
-								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">SignUp</a></li>
-							</ul>
-						</nav>	
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<main>
-			
-            {% block content %}
+    {% block content %}
 
-            {% endblock content %}
-			
+    {% endblock content %}
 
-		</main>
 
-		<footer class="tm-footer text-center">
-			<p>Copyright &copy; 2020 Simple House 
-		</footer>
-	</div>
-	<script src="{% static 'js/jquery.min.js' %}"></script>
-	<script src="{% static 'js/parallax.min.js' %}"></script>
-	<script>
-		$(document).ready(function(){
-			// Handle click on paging links
-			$('.tm-paging-link').click(function(e){
-				e.preventDefault();
-				
-				var page = $(this).text().toLowerCase();
-				$('.tm-gallery-page').addClass('hidden');
-				$('#tm-gallery-page-' + page).removeClass('hidden');
-				$('.tm-paging-link').removeClass('active');
-				$(this).addClass("active");
-			});
-		});
-	</script>
+
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
 </body>
+
+</html>
