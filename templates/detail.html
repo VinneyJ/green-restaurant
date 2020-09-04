@@ -1,4 +1,4 @@
-
+{% extends 'base.html' %}
 {% block content %}
   <!--Main layout-->
   <main class="mt-5 pt-4">
@@ -23,7 +23,7 @@
 
             <div class="mb-3">
               <a href="">
-                <span class="badge purple mr-1">Category 2</span>
+                <span class="badge purple mr-1">{{ object.food }}</span>
               </a>
               <a href="">
                 <span class="badge blue mr-1">New</span>
@@ -34,27 +34,56 @@
             </div>
 
             <p class="lead">
-              <span class="mr-1">
-                <del>$200</del>
+              <span class="mr-1">Ksh
+                {% if object.discount_price %}
+                <small><del>{{ object.price }}</del></small>
+                {{ object.discount_price }}
+                {% else %}
               </span>
-              <span>$100</span>
+              <span>{{ object.price }}</span>
+
+              {% endif %}
+
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-              sint voluptatibus!
-              Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+            <p>{{ object.description }}</p>
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
               <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+              <!-- <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
+              </button> -->
 
             </form>
 
+            <a class="btn btn-danger btn-md my-0 p" href="{{ object.get_remove_from_cart_url }}">Remove from cart</a>
+              
+            </a>
+            <a class="btn btn-primary btn-md my-0 p" href="{{ object.get_add_to_cart_url }}">Add to cart</a>
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+
+              <!-- More Details -->
+            <ul class="list-unstyled list-inline d-flex justify-content-between mb-0" style="margin-top: 2rem !important;">
+              <h4 style="color: black;">Availability</h4>
+              <li class="list-inline-item mr-0">
+              <div class="chip mr-0">5:30PM</div>
+                  </li>
+                  <li class="list-inline-item mr-0">
+                    <div class="chip deep-purple white-text mr-0">7:30PM</div>
+                  </li>
+                  <li class="list-inline-item mr-0">
+                    <div class="chip mr-0">8:00PM</div>
+                  </li>
+                  <li class="list-inline-item mr-0">
+                    <div class="chip mr-0">9:00PM</div>
+                  </li>
+            </ul>
+
+              <!-- End More details -->
           </div>
           <!--Content-->
 

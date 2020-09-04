@@ -3,11 +3,11 @@
 
 from .views import( 
                    ItemListView, 
-                #    ItemDetailView,
+                   ItemDetailView,
                 #    about_page,
                 #    contact_page,
-                #    add_item_to_cart,
-                #    remove_from_cart,   
+                   add_item_to_cart,
+                   remove_from_cart,   
                 ) 
 #from django.conf.urls.static import static
 from django.urls import path, include
@@ -25,9 +25,9 @@ urlpatterns = [
     # path('topping/', views.toppings, name='topping')
     
     path('', ItemListView.as_view(), name='home'),
-    # path('detail/<slug>/', ItemDetailView.as_view(), name='detail'),
-    # path('add_to_cart/<slug>/', views.add_item_to_cart, name='add_to_cart'),
-    # path('remove_from_cart/<slug>/', views.remove_from_cart, name='remove_from_cart'),
+    path('detail/<slug>/', ItemDetailView.as_view(), name='detail'),
+    path('add_to_cart/<slug>/', add_item_to_cart, name='add_to_cart'),
+    path('remove_from_cart/<slug>/', remove_from_cart, name='remove_from_cart'),
     # path('about', about_page, name='about'),
     # path('contact', views.contact_page, name='contact')
 ]

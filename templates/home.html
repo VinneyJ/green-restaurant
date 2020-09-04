@@ -213,7 +213,7 @@
                       <!-- Card image -->
                       <div class="view overlay">
                         <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg" alt="Card image cap">
-                        <a href="#!">
+                        <a href="{{ item.get_absolute_url }}">
                           <div class="mask rgba-white-slight"></div>
                         </a>
                       </div>
@@ -232,31 +232,24 @@
                           <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text"></i></li>
                           <li class="list-inline-item"><p class="text-muted">4.5 (413)</p></li>
                         </ul>
-                        <p class="mb-2">$ • American, Restaurant</p>
+                        <p class="mb-2">$ •Food</p>
                         <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">{{ item.description }}</p>
                         <hr class="my-4">
                         <p class="lead">
-                          <h4 class="font-weight-bold blue-text">
-                            <strong>139$</strong>
+                          <h4 class="font-weight-bold green-text">
+                            <strong>Ksh
+                                {% if item.discount_price %}
+                                <small><del>{{ item.price }}</del></small>
+                                {{ item.discount_price }}
+                                {% else %}
+                                
+                                {{ item.price }}
+                                {% endif %}
+                            </strong>
                           </h4>
                         </p>
-                        <!-- <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">5:30PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip deep-purple white-text mr-0">7:30PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">8:00PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">9:00PM</div>
-                          </li>
-                        </ul> -->
-                        <!-- Button -->
-                        <!-- <a href="#" class="btn btn-flat deep-purple-text p-1 mx-0 mb-0">Button</a> -->
+
 
                       </div>
 

@@ -29,7 +29,7 @@ from .models import Item, OrderItem, Order
 
 class ItemListView(ListView):
     model = Item
-    paginate_by = 1
+    paginate_by = 8
     template_name = 'home.html'
     
     
@@ -44,8 +44,8 @@ class ItemDetailView(DetailView):
     model = Item
     template_name = 'detail.html'
     
-def detail_page(request):
-    return render(request, 'detail.html')
+    # def detail_page(request):
+    #     return render(request, 'detail.html')
 
 def add_item_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
