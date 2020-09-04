@@ -1,41 +1,150 @@
-
 {% extends 'base.html' %}
 {% block content %}
-		
-	<header class="row tm-welcome-section">
-		<h2 class="col-12 text-center tm-section-title">Welcome to Simple House</h2>
-	</header>
-	
-	
-	<div class="tm-section tm-container-inner">
-		<div class="row">
-			<div class="col-md-6">
-				<figure class="tm-description-figure">
-					<img src="img/img-01.jpg" alt="Image" class="img-fluid" />
-				</figure>
-			</div> 
-			<div class="col-md-6">
-				<div class="tm-description-box"> 
-					<h4 class="tm-gallery-title">{{ item.title }}</h4>
-					<p class="tm-mb-45">{{object.description }}</p>
-					
-					<p>Category: {{ object.get_category_display }} </p>
-					
-					<p class="tm-gallery-price">
-						{% if object.discount_price %}
-							<del> Ksh {{ object.price }}</del>
-							<span> Ksh {{ object.discount_price }}</span>
-						{% else %}
-							 <span>{{ object.price }}</span>
-						{% endif %}
-					
-					</p>
-					<a href="{{ object.get_add_to_cart_url }}" class="tm-btn tm-btn-default tm-right">Add to Cart</a>
-					<a href="{{ object.get_remove_from_cart_url }}" class="tm-btn tm-btn-default tm-right">Remove from Cart</a>
-				</div>
-			</div>
-		</div>
-	</div>
-		
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
 
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <div class="mb-3">
+              <a href="">
+                <span class="badge purple mr-1">{{ object.food }}</span>
+              </a>
+              <a href="">
+                <span class="badge blue mr-1">New</span>
+              </a>
+              <a href="">
+                <span class="badge red mr-1">Bestseller</span>
+              </a>
+            </div>
+
+            <p class="lead">
+              <span class="mr-1">Ksh
+                {% if object.discount_price %}
+                <small><del>{{ object.price }}</del></small>
+                {{ object.discount_price }}
+                {% else %}
+              </span>
+              <span>{{ object.price }}</span>
+
+              {% endif %}
+
+            </p>
+
+            <p class="lead font-weight-bold">{{ object.title }}</p>
+
+            <p>{{ object.description }}</p>
+
+            <form class="d-flex justify-content-left">
+              <!-- Default input -->
+              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <!-- <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button> -->
+
+            </form>
+
+            <a class="btn btn-danger btn-md my-0 p" href="{{ object.get_remove_from_cart_url }}">Remove from cart</a>
+              
+            </a>
+            <a class="btn btn-green btn-md my-0 p" href="{{ object.get_add_to_cart_url }}">Add to cart</a>
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+
+              <!-- More Details -->
+            <ul class="list-unstyled list-inline d-flex justify-content-between mb-0" style="margin-top: 2rem !important;">
+              <h4 style="color: black;">Availability</h4>
+              <li class="list-inline-item mr-0">
+              <div class="chip mr-0">5:30PM</div>
+                  </li>
+                  <li class="list-inline-item mr-0">
+                    <div class="chip badge purple mr-0 white-text">7:30PM</div>
+                  </li>
+                  <li class="list-inline-item mr-0">
+                    <div class="chip mr-0">8:00PM</div>
+                  </li>
+                  <li class="list-inline-item mr-0">
+                    <div class="chip mr-0">9:00PM</div>
+                  </li>
+            </ul>
+
+              <!-- End More details -->
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 text-center">
+
+          <h4 class="my-4 h4">Additional information</h4>
+
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
+            voluptates,
+            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+  <!--Main layout-->
 {% endblock content %}
+

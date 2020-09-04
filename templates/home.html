@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block content %}
 <!--Carousel Wrapper-->
   <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
@@ -23,7 +24,7 @@
             <!-- Content -->
             <div class="text-center white-text mx-5 wow fadeIn">
               <h1 class="mb-4">
-                <strong>Learn Bootstrap 4 with MDB</strong>
+                <strong>Simple House Restaurant</strong>
               </h1>
 
               <p>
@@ -36,10 +37,10 @@
                   available. Create your own, stunning website.</strong>
               </p>
 
-              <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
+              <!-- <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
                 free tutorial
                 <i class="fas fa-graduation-cap ml-2"></i>
-              </a>
+              </a> -->
             </div>
             <!-- Content -->
 
@@ -168,13 +169,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Shirts</a>
+              <a class="nav-link" href="#">Food</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sport wears</a>
+              <a class="nav-link" href="#">Drinks</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Outwears</a>
+              <a class="nav-link" href="#">Beverages</a>
             </li>
 
           </ul>
@@ -197,6 +198,8 @@
         <!--Grid row-->
         <div class="row wow fadeIn">
 
+        {% for item in object_list %}
+
           <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4">
 
@@ -204,6 +207,69 @@
             <div class="card">
 
               <!--Card image-->
+                    <!-- Card -->
+                    <div class="card booking-card">
+
+                      <!-- Card image -->
+                      <div class="view overlay">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg" alt="Card image cap">
+                        <a href="{{ item.get_absolute_url }}">
+                          <div class="mask rgba-white-slight"></div>
+                        </a>
+                      </div>
+
+                      <!-- Card content -->
+                      <div class="card-body">
+
+                        <!-- Title -->
+                        <h4 class="card-title font-weight-bold"><a>{{ item.title }}</a></h4>
+                        <!-- Data -->
+                        <ul class="list-unstyled list-inline rating mb-0">
+                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"> </i></li>
+                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+                          <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text"></i></li>
+                          <li class="list-inline-item"><p class="text-muted">4.5 (413)</p></li>
+                        </ul>
+                        <p class="mb-2">$ •Food</p>
+                        <!-- Text -->
+                        <p class="card-text">{{ item.description }}</p>
+                        <hr class="my-4">
+                        <p class="lead">
+                          <h4 class="font-weight-bold green-text">
+                            <strong>Ksh
+                                {% if item.discount_price %}
+                                <small><del>{{ item.price }}</del></small>
+                                {{ item.discount_price }}
+                                {% else %}
+                                
+                                {{ item.price }}
+                                {% endif %}
+                            </strong>
+                          </h4>
+                        </p>
+
+
+                      </div>
+
+                    </div>
+                    <!-- Card -->
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+
+          </div>
+          <!--Grid column-->
+        {% endfor %}
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
                     <!-- Card -->
                     <div class="card booking-card">
 
@@ -259,7 +325,6 @@
 
                     </div>
                     <!-- Card -->
-              <!--Card content-->
 
             </div>
             <!--Card-->
@@ -267,157 +332,6 @@
           </div>
           <!--Grid column-->
 
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!--Card-->
-            <div class="card">
-
-                    <!-- Card -->
-                    <div class="card booking-card">
-
-                      <!-- Card image -->
-                      <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg" alt="Card image cap">
-                        <a href="#!">
-                          <div class="mask rgba-white-slight"></div>
-                        </a>
-                      </div>
-
-                      <!-- Card content -->
-                      <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title font-weight-bold"><a>La Sirena restaurant</a></h4>
-                        <!-- Data -->
-                        <ul class="list-unstyled list-inline rating mb-0">
-                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"> </i></li>
-                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
-                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
-                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
-                          <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text"></i></li>
-                          <li class="list-inline-item"><p class="text-muted">4.5 (413)</p></li>
-                        </ul>
-                        <p class="mb-2">$ • American, Restaurant</p>
-                        <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <hr class="my-4">
-                        <p class="lead">
-                          <h4 class="font-weight-bold blue-text">
-                            <strong>139$</strong>
-                          </h4>
-                        </p>
-                        <!-- <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">5:30PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip deep-purple white-text mr-0">7:30PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">8:00PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">9:00PM</div>
-                          </li>
-                        </ul> -->
-                        <!-- Button -->
-                        <!-- <a href="#" class="btn btn-flat deep-purple-text p-1 mx-0 mb-0">Button</a> -->
-
-                      </div>
-
-                    </div>
-                    <!-- Card -->
-
-            </div>
-            <!--Card-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!--Card-->
-            <div class="card">
-
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <!--Card image-->
-
-              <!--Card content-->
-              <div class="card-body text-center">
-                <!--Category & Title-->
-                <a href="" class="grey-text">
-                  <h5>Sport wear</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text">Grey blouse
-                      <span class="badge badge-pill primary-color">bestseller</span>
-                    </a>
-                  </strong>
-                </h5>
-
-                <h4 class="font-weight-bold blue-text">
-                  <strong>99$</strong>
-                </h4>
-
-              </div>
-              <!--Card content-->
-
-            </div>
-            <!--Card-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Fourth column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!--Card-->
-            <div class="card">
-
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <!--Card image-->
-
-              <!--Card content-->
-              <div class="card-body text-center">
-                <!--Category & Title-->
-                <a href="" class="grey-text">
-                  <h5>Outwear</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text">Black jacket</a>
-                  </strong>
-                </h5>
-
-                <h4 class="font-weight-bold blue-text">
-                  <strong>219$</strong>
-                </h4>
-
-              </div>
-              <!--Card content-->
-
-            </div>
-            <!--Card-->
-
-          </div>
-          <!--Fourth column-->
 
         </div>
         <!--Grid row-->
@@ -426,198 +340,7 @@
         <div class="row wow fadeIn">
 
           <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
 
-            <!--Card-->
-            <div class="card">
-
-              <!--Card image-->
-                    <!-- Card -->
-                    <div class="card booking-card">
-
-                      <!-- Card image -->
-                      <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg" alt="Card image cap">
-                        <a href="#!">
-                          <div class="mask rgba-white-slight"></div>
-                        </a>
-                      </div>
-
-                      <!-- Card content -->
-                      <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title font-weight-bold"><a>La Sirena restaurant</a></h4>
-                        <!-- Data -->
-                        <ul class="list-unstyled list-inline rating mb-0">
-                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"> </i></li>
-                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
-                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
-                          <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
-                          <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text"></i></li>
-                          <li class="list-inline-item"><p class="text-muted">4.5 (413)</p></li>
-                        </ul>
-                        <p class="mb-2">$ • American, Restaurant</p>
-                        <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <hr class="my-4">
-                        <p class="lead">
-                          <h4 class="font-weight-bold blue-text">
-                            <strong>139$</strong>
-                          </h4>
-                        </p>
-                        <!-- <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">5:30PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip deep-purple white-text mr-0">7:30PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">8:00PM</div>
-                          </li>
-                          <li class="list-inline-item mr-0">
-                      <div class="chip mr-0">9:00PM</div>
-                          </li>
-                        </ul> -->
-                        <!-- Button -->
-                        <!-- <a href="#" class="btn btn-flat deep-purple-text p-1 mx-0 mb-0">Button</a> -->
-
-                      </div>
-
-                    </div>
-                    <!-- Card -->
-
-            </div>
-            <!--Card-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!--Card-->
-            <div class="card">
-
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <!--Card image-->
-
-              <!--Card content-->
-              <div class="card-body text-center">
-                <!--Category & Title-->
-                <a href="" class="grey-text">
-                  <h5>Sport wear</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text">Sweatshirt</a>
-                  </strong>
-                </h5>
-
-                <h4 class="font-weight-bold blue-text">
-                  <strong>139$</strong>
-                </h4>
-
-              </div>
-              <!--Card content-->
-
-            </div>
-            <!--Card-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!--Card-->
-            <div class="card">
-
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <!--Card image-->
-
-              <!--Card content-->
-              <div class="card-body text-center">
-                <!--Category & Title-->
-                <a href="" class="grey-text">
-                  <h5>Sport wear</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text">Grey blouse
-                      <span class="badge badge-pill primary-color">bestseller</span>
-                    </a>
-                  </strong>
-                </h5>
-
-                <h4 class="font-weight-bold blue-text">
-                  <strong>99$</strong>
-                </h4>
-
-              </div>
-              <!--Card content-->
-
-            </div>
-            <!--Card-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Fourth column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!--Card-->
-            <div class="card">
-
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <!--Card image-->
-
-              <!--Card content-->
-              <div class="card-body text-center">
-                <!--Category & Title-->
-                <a href="" class="grey-text">
-                  <h5>Outwear</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text">Black jacket</a>
-                  </strong>
-                </h5>
-
-                <h4 class="font-weight-bold blue-text">
-                  <strong>219$</strong>
-                </h4>
-
-              </div>
-              <!--Card content-->
-
-            </div>
-            <!--Card-->
-
-          </div>
-          <!--Fourth column-->
 
         </div>
         <!--Grid row-->
