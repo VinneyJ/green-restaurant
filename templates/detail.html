@@ -46,7 +46,7 @@
 
             </p>
 
-            <p class="lead font-weight-bold">Description</p>
+            <p class="lead font-weight-bold">{{ object.title }}</p>
 
             <p>{{ object.description }}</p>
 
@@ -62,7 +62,7 @@
             <a class="btn btn-danger btn-md my-0 p" href="{{ object.get_remove_from_cart_url }}">Remove from cart</a>
               
             </a>
-            <a class="btn btn-primary btn-md my-0 p" href="{{ object.get_add_to_cart_url }}">Add to cart</a>
+            <a class="btn btn-green btn-md my-0 p" href="{{ object.get_add_to_cart_url }}">Add to cart</a>
               <i class="fas fa-shopping-cart ml-1"></i>
             </a>
 
@@ -73,7 +73,7 @@
               <div class="chip mr-0">5:30PM</div>
                   </li>
                   <li class="list-inline-item mr-0">
-                    <div class="chip deep-purple white-text mr-0">7:30PM</div>
+                    <div class="chip badge purple mr-0 white-text">7:30PM</div>
                   </li>
                   <li class="list-inline-item mr-0">
                     <div class="chip mr-0">8:00PM</div>

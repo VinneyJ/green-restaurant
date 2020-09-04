@@ -4,8 +4,8 @@
 from .views import( 
                    ItemListView, 
                    ItemDetailView,
-                #    about_page,
-                #    contact_page,
+                   about_page,
+                   contact_page,
                    add_item_to_cart,
                    remove_from_cart,   
                 ) 
@@ -28,7 +28,7 @@ urlpatterns = [
     path('detail/<slug>/', ItemDetailView.as_view(), name='detail'),
     path('add_to_cart/<slug>/', add_item_to_cart, name='add_to_cart'),
     path('remove_from_cart/<slug>/', remove_from_cart, name='remove_from_cart'),
-    # path('about', about_page, name='about'),
-    # path('contact', views.contact_page, name='contact')
+    path('about', about_page, name='about'),
+    path('contact', contact_page, name='contact')
 ]
 
