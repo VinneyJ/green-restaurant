@@ -71,7 +71,7 @@ def add_item_to_cart(request, slug):
         ordered_date = timezone.now()
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.success(request,"The item has bee added to the cart")  
+        messages.success(request,"The item has been added to the cart")  
         return redirect("pizza:detail", slug=slug)
 
 def remove_from_cart(request, slug):
