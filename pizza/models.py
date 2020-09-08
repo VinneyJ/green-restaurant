@@ -22,6 +22,7 @@ class Item(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=5)
     label = models.CharField(choices=LABEL_CHOICES, max_length=2)
     slug = models.SlugField()
+    overview = models.CharField(max_legth=20)
     description = models.TextField()
     
     
