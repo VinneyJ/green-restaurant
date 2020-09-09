@@ -59,7 +59,24 @@ class OrderItem(models.Model):
     
     def __str__(self):
         return f'{self.quantity} of {self.item.title}'
+    
+    def get_item_total_price(self):
+        return self.quantity * self.item.price
+    
+    def get_item_discount_total_price(self):
+        return self.quantity * self.item.discount_price
 
+    def get_saved_ammount(self):
+        return self.get_item_total_price() - self.get_item_discount_total_price()
+    
+    
+    def get_final_price(self):
+        if self.item.discount_price:
+            return self.get_item_discount_total_price()
+        return self.get_item_total_price()
+    
+
+    
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
@@ -69,7 +86,21 @@ class Order(models.Model):
     
     def __str__(self):
         return self.user.username
+    
+    def get_total_items_price(self):
+        total = 0
+        
+        for order_item in self.items.all():
+            total += order_item.get_final_price()
+        return total
 
+    # def get_total_discount(self):
+    #     discount_total  = 0
+        
+    #     for order_item in self.items.all():
+    #         discount_total += order_item.get_saved_ammount()
+    #     return discount_total
+            
 # class Pizza_Type(models.Model):
 #     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
 #     pizza_type = models.CharField(choices=PIZZA_TYPES, max_length=10)
