@@ -33,9 +33,17 @@ class ItemListView(ListView):
     template_name = 'home.html'
     
     
+class OrderSummeryView(DetailView):
+    model = Item
+    template_name = 'order-summery.html'
+    
+    
 
 def about_page(request):
     return render(request, 'about.html')
+
+def checkout(request):
+    return render(request, 'checkout-page.html')
 
 def contact_page(request):
     return render(request, 'contact.html')
@@ -46,6 +54,8 @@ class ItemDetailView(DetailView):
     
     # def detail_page(request):
     #     return render(request, 'detail.html')
+    
+    
 
 def add_item_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
