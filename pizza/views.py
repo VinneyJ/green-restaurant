@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
+from .forms import CheckOutForm
 from django.utils import timezone
 from .models import Item, OrderItem, Order
 
@@ -53,8 +54,25 @@ class OrderSummaryView(LoginRequiredMixin, View):
 def about_page(request):
     return render(request, 'about.html')
 
-def checkout(request):
-    return render(request, 'checkout-page.html')
+
+
+class Checkout(View):
+    def get(self, *args, **kwargs):
+        #form
+        form = CheckOutForm()
+        context = {
+            'form': form
+        }
+        return render(self.request, 'checkout-page.html', context)
+    
+    def post(self, *args, **kwargs):
+        form = CheckOutForm(self.request.POST or None)
+        if form.is_valid():
+            
+            return redirect(self.request, 'pizza:checkout')
+
+
+
 
 def contact_page(request):
     return render(request, 'contact.html')
