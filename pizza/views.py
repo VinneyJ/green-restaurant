@@ -66,10 +66,14 @@ class Checkout(View):
         return render(self.request, 'checkout-page.html', context)
     
     def post(self, *args, **kwargs):
+        print(self.request.POST)
         form = CheckOutForm(self.request.POST or None)
         if form.is_valid():
-            
+            print(form.cleaned_data)
+            print("The form is valid")
             return redirect(self.request, 'pizza:checkout')
+        messages.warning(self.request, "Failed checkout")
+        return redirect('pizza:checkout')
 
 
 
