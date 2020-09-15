@@ -93,13 +93,13 @@
               <hr>
 
               <div class="custom-control custom-checkbox">
-                <!-- <input type="checkbox" class="custom-control-input" id="same-address"> -->
-                {{ form.same_billing_address }}
+                <input {% if form.same_billing_address %} checked {% endif %} type="checkbox" class="custom-control-input" name="same_billing_address" id="same-address">
+                <!-- {{ form.same_billing_address }} -->
                 <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
               </div>
               <div class="custom-control custom-checkbox">
-                <!-- <input type="checkbox" class="custom-control-input" id="save-info"> -->
-                {{ form.save_info }}
+                <input {% if form.save_info %} checked {% endif %} type="checkbox" class="custom-control-input" name="save-info" id="save-info">
+                <!-- {{ form.save_info }} -->
                 <label class="custom-control-label" for="save-info">Save this information for next time</label>
               </div>
 
