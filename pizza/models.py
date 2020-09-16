@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.shortcuts import reverse
 
+from django_countries.fields import CountryField
 # Create your models here.
 CATEGORY_CHOICES = (
     ('food', 'Food'),
@@ -127,4 +128,8 @@ class Order(models.Model):
 
 class BillingAddress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    street_address = models.CharField(max_length=100)
+    apartment_address = models.CharField(max_length=100)
+    country = CountryField(multiple=True)
+    zip = models.CharField(max_length=100)
     
