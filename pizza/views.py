@@ -69,8 +69,8 @@ class Checkout(View):
         print(self.request.POST)
         print("form is invalid")
         street_address =form.cleaned_data.get('street_address')
-        apartment_address
-        country
+        apartment_address = form.cleaned_data.get('apartment_address')
+        country = form.cleaned_data.get('country')
         zip
         same_billing_address
         save_info
