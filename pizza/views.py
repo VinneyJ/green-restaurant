@@ -68,6 +68,13 @@ class Checkout(View):
     def post(self, *args, **kwargs):
         print(self.request.POST)
         print("form is invalid")
+        street_address =form.cleaned_data.get('street_address')
+        apartment_address
+        country
+        zip
+        same_billing_address
+        save_info
+        payment_option
         form = CheckOutForm(self.request.POST or None)
         
         if form.is_valid():
