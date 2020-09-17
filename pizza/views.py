@@ -72,9 +72,9 @@ class Checkout(View):
         apartment_address = form.cleaned_data.get('apartment_address')
         country = form.cleaned_data.get('country')
         zip = form.cleaned_data.get('zip')
-        same_billing_address = form.cleaned_data.get('')
-        save_info
-        payment_option
+        same_billing_address = form.cleaned_data.get('same_billing_address')
+        save_info = form.cleaned_data.get('save_info')
+        payment_option = form.cleaned_data.get('payment_option')
         form = CheckOutForm(self.request.POST or None)
         
         if form.is_valid():
