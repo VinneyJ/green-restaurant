@@ -71,8 +71,8 @@ class Checkout(View):
         street_address =form.cleaned_data.get('street_address')
         apartment_address = form.cleaned_data.get('apartment_address')
         country = form.cleaned_data.get('country')
-        zip
-        same_billing_address
+        zip = form.cleaned_data.get('zip')
+        same_billing_address = form.cleaned_data.get('')
         save_info
         payment_option
         form = CheckOutForm(self.request.POST or None)
