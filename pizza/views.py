@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from .forms import CheckOutForm
 from django.utils import timezone
-from .models import Item, OrderItem, Order
+from .models import Item, OrderItem, Order, BillingAddress
 
 # Create your views here.
 
@@ -75,6 +75,16 @@ class Checkout(View):
         same_billing_address = form.cleaned_data.get('same_billing_address')
         save_info = form.cleaned_data.get('save_info')
         payment_option = form.cleaned_data.get('payment_option')
+        
+        billing_address = BillingAddress(
+            user = self.request.user,
+            street_address = street_address,
+            apartment_address = apartment_address,
+            country = country,
+            zip = zip,
+              
+        )
+        billing_address.save()
         form = CheckOutForm(self.request.POST or None)
         
         if form.is_valid():
