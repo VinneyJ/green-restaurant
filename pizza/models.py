@@ -68,7 +68,7 @@ class OrderItem(models.Model):
         return self.quantity * self.item.discount_price
 
     def get_saved_ammount(self):
-        if self.item.discount:
+        if self.item.discount_price:
             return self.get_item_total_price() - self.get_item_discount_total_price()
     
     
@@ -100,12 +100,12 @@ class Order(models.Model):
     
     #Total savings amount
 
-    def get_total_discount(self):
-        discount_total  = 0
+    # def get_total_discount(self):
+    #     discount_total  = 0
         
-        for order_item in self.items.all():
-            discount_total += order_item.get_item_discount_total_price()
-        return discount_total
+    #     for order_item in self.items.all():
+    #         discount_total += order_item.get_item_discount_total_price()
+    #     return discount_total
             
 # class Pizza_Type(models.Model):
 #     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
