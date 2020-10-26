@@ -74,8 +74,11 @@ class CheckoutView(View):
                 apartment_address = form.cleaned_data.get('apartment_address')
                 country = form.cleaned_data.get('country')
                 zip = form.cleaned_data.get('zip')
-                same_billing_address = form.cleaned_data.get('same_billing_address')
-                save_info = form.cleaned_data.get('save_info')
+                
+                #TODO: addfunctionality for these fields
+                # same_shipping_address = form.cleaned_data.get('same_shiping_address')
+                # save_info = form.cleaned_data.get('save_info')
+                
                 payment_option = form.cleaned_data.get('payment_option')
                 
                 billing_address = BillingAddress(
@@ -87,6 +90,10 @@ class CheckoutView(View):
                     
                 )
                 billing_address.save()
+                order.billing_address = billing_address
+                order.save()
+                
+                #TODO: add a redirect to the selected payment option
                 return redirect('pizza:checkout')
             messages.warning(self.request, "Failed checkout")
             return redirect('pizza:checkout')
