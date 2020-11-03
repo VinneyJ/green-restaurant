@@ -10,7 +10,8 @@ from .views import(
                    contact_page,
                    add_item_to_cart,
                    remove_from_cart,
-                   remove_single_item_from_cart   
+                   remove_single_item_from_cart,
+                   PaymentView   
                 ) 
 #from django.conf.urls.static import static
 from django.urls import path, include
@@ -35,6 +36,7 @@ urlpatterns = [
     path('remove_from_cart/<slug>/', remove_from_cart, name='remove_from_cart'),
     path('remove_item_from_cart/<slug>/', remove_single_item_from_cart, name='remove_single_item_from_cart'),
     path('about', about_page, name='about'),
-    path('contact', contact_page, name='contact')
+    path('contact', contact_page, name='contact'),
+    path('payment/<payment_option>/', PaymentView.as_view(), name='payment')
 ]
 

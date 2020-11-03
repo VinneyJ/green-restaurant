@@ -111,6 +111,10 @@ class CheckoutView(View):
         return redirect('pizza:checkout')
 
 
+class PaymentView(View):
+    def get(self, *args, **kwargs):
+        return render(self.request, 'payment.html')
+
 
 
 def contact_page(request):
