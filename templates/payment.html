@@ -5,7 +5,7 @@
 <style media="screen">
 
 
-*, label {
+#stripeBtnLabel {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 16px;
   font-variant: normal;
@@ -14,7 +14,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-button {
+#stripeBtn {
   border: none;
   border-radius: 4px;
   outline: none;
@@ -45,7 +45,7 @@ button:hover {
   background-color: #43458b;
 }
 
-form {
+#stripe-form {
   padding: 30px;
   height: 120px;
 }
@@ -126,9 +126,9 @@ label {
           <!--Card-->
           <div class="card" class="card-body">
             <script src="https://js.stripe.com/v3/"></script>
-            <form action="/charge" method="post" id="payment-form">
+            <form action="/charge" method="post" id="stripe-form">
               <div class="stripe-form-row">
-                <label for="card-element">
+                <label for="card-element" id="stripeBtnLabel">
                   Credit or debit card
                 </label>
                 <div id="card-element" class="StripeElement StripeElement--empty"><div class="__PrivateStripeElement" style="margin: 0px !important; padding: 0px !important; border: medium none !important; display: block !important; background: transparent none repeat scroll 0% 0% !important; position: relative !important; opacity: 1 !important;"><iframe allowtransparency="true" scrolling="no" name="__privateStripeFrame5595" allowpaymentrequest="true" src="https://js.stripe.com/v3/elements-inner-card-caf1c0c2b019dfd537fc74eccfe7bcf0.html#style[base][color]=%2332325d&amp;style[base][fontFamily]=%22Helvetica+Neue%22%2C+Helvetica%2C+sans-serif&amp;style[base][fontSmoothing]=antialiased&amp;style[base][fontSize]=16px&amp;style[base][::placeholder][color]=%23aab7c4&amp;style[invalid][color]=%23fa755a&amp;style[invalid][iconColor]=%23fa755a&amp;componentName=card&amp;wait=false&amp;rtl=false&amp;keyMode=test&amp;apiKey=pk_test_HIzikcC27xHTlaeImOq8OgPj00CvJtWQLE&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;controllerId=__privateStripeController5591" title="Secure card payment input frame" style="border: medium none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translateZ(0px) !important; height: 19.2px;" frameborder="0"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: medium none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent none repeat scroll 0% 0% !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
@@ -137,10 +137,10 @@ label {
                 <div id="card-errors" role="alert"></div>
               </div>
           
-              <button>Submit Payment</button>
+              <button id="stripeBtn">Submit Payment</button>
             </form>
             </div>
-            <div id="stripe-token-handler" class="is-hidden">Success! Got token: <span class="token"></span>
+            <!-- <div id="stripe-token-handler" class="is-hidden">Success! Got token: <span class="token"></span> -->
 
             <!--Card content-->
 
