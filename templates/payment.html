@@ -127,6 +127,7 @@ label {
           <div class="card" class="card-body">
             <script src="https://js.stripe.com/v3/"></script>
             <form action="." method="post" id="stripe-form">
+              {% csrf_token %}
               <div class="stripe-form-row">
                 <label for="card-element" id="stripeBtnLabel">
                   Credit or debit card
@@ -208,8 +209,8 @@ label {
     </div>
   </main>
   <!--Main layout-->
-  <script type="text/javascript" nonce="">  // Create a Stripe client.
-    var stripe = Stripe('');
+  <script type="text/javascript" nonce="esT/9oZdNkRE5M297sd6Vw==">  // Create a Stripe client.
+    var stripe = Stripe('pk_test_HIzikcC27xHTlaeImOq8OgPj00CvJtWQLE');
   
     // Create an instance of Elements.
     var elements = stripe.elements();

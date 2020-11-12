@@ -93,6 +93,12 @@ DATABASES = {
     }
 }
 
+STRIPE_PUBLIC_KEY = 'pk_test_HIzikcC27xHTlaeImOq8OgPj00CvJtWQLE'
+STRIPE_SECRET_KEY = 'sk_test_cqQW4am9ma3f3Dcy9CeRc9NS00RfhAqdoM'
+
+# STRIPE_PUBLIC_KEY = config('STRIPE_LIVE_PUBLIC_KEY')
+# STRIPE_SECRET_KEY = config('STRIPE_LIVE_SECRET_KEY')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

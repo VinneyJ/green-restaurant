@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
@@ -9,7 +10,7 @@ from django.utils import timezone
 from .models import Item, OrderItem, Order, BillingAddress, Payment
 
 import stripe
-stripe.api_key = "sk_test_cqQW4am9ma3f3Dcy9CeRc9NS00RfhAqdoM"
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
 
@@ -128,19 +129,23 @@ class PaymentView(View):
         token = self.request.POST.get('stripeToken')
         amount = int(order.get_total_items_price() * 100)
         
+        
         try:
             charge = stripe.Charge.create(
-                amount= amount,
+                amount=amount,
                 currency="usd",
-                source= token,
+                source=token
             )
+            
             #Create payment
             payment = Payment()
             payment.stripe_charge_id = charge['id']
             payment.user = self.request.user
             payment.amount = order.get_total_items_price()
             payment.save()
-
+            
+            
+            #Assign payment into the Order model
             order.ordered = True
             order.payment = payment
             order.save()
@@ -152,40 +157,40 @@ class PaymentView(View):
             body = e.json_body
             err = body.get('error', {})
 
-            messages.error(self.request, f"{(err.get('message'))}")
+            messages.warning(self.request, f"{(err.get('message'))}")
             return redirect('/')
         
         except stripe.error.RateLimitError as e:
         # Too many requests made to the API too quickly
-            messages.error(self.request, "Rate Limit Error")
+            messages.warning(self.request, "Rate Limit Error")
             return redirect('/')
     
         except stripe.error.InvalidRequestError as e:
         # Invalid parameters were supplied to Stripe's API
-            messages.error(self.request, "Invalid Parameters Error")
+            messages.warning(self.request, "Invalid Parameters Error")
             return redirect('/')
     
         except stripe.error.AuthenticationError as e:
         # Authentication with Stripe's API failed
         # (maybe you changed API keys recently)
-            messages.error(self.request, "Authentication Error")
+            messages.warning(self.request, "Authentication Error")
             return redirect('/')
     
         except stripe.error.APIConnectionError as e:
         # Network communication with Stripe failed
-            messages.error(self.request, "Network Error")
+            messages.warning(self.request, "Network Error")
             return redirect('/')
     
         except stripe.error.StripeError as e:
         # Display a very generic error to the user, and maybe send
         # yourself an email
-            messages.error(self.request, "Something went wrong. You were not charged. Please try again.")
+            messages.warning(self.request, "Something went wrong. You were not charged. Please try again.")
             return redirect('/')
     
         except Exception as e:
         # Something else happened, completely unrelated to Stripe
         # Send an email to myself
-            messages.error(self.request, "A serious error. We have been notified.")
+            messages.warning(self.request, "A serious error. We have been notified.")
             return redirect('/')
         
         
